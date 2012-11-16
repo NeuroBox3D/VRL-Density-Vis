@@ -4,17 +4,27 @@
  */
 package edu.gcsc.vrl.densityvis;
 
+import javax.vecmath.Point3f;
+
 /**
- *
+ * Internal implementation of the density interface. This class must not be
+ * exported as public API.
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
 class DistanceImpl implements Distance{
     
-    private Voxel voxel;
+    private VoxelSet voxel;
+    private Point3f point;
     private double distance;
 
-    public DistanceImpl(Voxel voxel, double distance) {
+    /**
+     * Constructor.
+     * @param voxel voxel set
+     * @param distance distance
+     */
+    public DistanceImpl(VoxelSet voxel, Point3f p, double distance) {
         this.voxel = voxel;
+        this.point = p;
         this.distance = distance;
     }
 
@@ -23,7 +33,7 @@ class DistanceImpl implements Distance{
      * @return the voxel
      */
     @Override
-    public Voxel getVoxel() {
+    public VoxelSet getVoxel() {
         return voxel;
     }
 
@@ -34,4 +44,9 @@ class DistanceImpl implements Distance{
     public double getDistance() {
         return distance;
     } 
+
+    @Override
+    public Point3f getPoint() {
+        return point;
+    }
 }

@@ -4,13 +4,17 @@
  */
 package edu.gcsc.vrl.densityvis;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
- *
+ * Density information interface.
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
 public interface Density {
-    public List<? extends Voxel> getVoxels();
+    /**
+     * Returns the voxel subsets that contain average density of the contained
+     * voxels.
+     * @return voxel subsets
+     */
+    public List<? extends VoxelSet> getVoxels();
 }

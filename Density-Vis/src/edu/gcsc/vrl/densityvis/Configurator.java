@@ -75,7 +75,7 @@ public class Configurator extends VPluginConfigurator {
 
             vapi.addTypeRepresentation(VCanvas3DType.class);
             vapi.addComponent(DensityUtil.class);
-            vapi.addComponent(Cube.class);
+            vapi.addComponent(ImageVoxels.class);
         }
     }
 
@@ -86,9 +86,8 @@ public class Configurator extends VPluginConfigurator {
 
     @Override
     public void init(InitPluginAPI iApi) {
-        // nothing to init
 
-//        CompletionUtil.registerClassesFromJar(
-//                VJarUtil.getClassLocation(Configurator.class));
+        CompletionUtil.registerClassesFromJar(
+                VJarUtil.getClassLocation(Configurator.class));
     }
 }

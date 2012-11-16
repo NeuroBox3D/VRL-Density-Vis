@@ -9,10 +9,10 @@ import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
 /**
- *
+ * Visual representation of a voxel set. 
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
-public class DensityCube {
+public class VisualVoxelSet {
 
     private float depth;
     private float width;
@@ -20,7 +20,20 @@ public class DensityCube {
     private Appearance cubeAppearance;
     private Shape3D cubeContainer;
 
-    public DensityCube(float x, float y, float z,
+    /**
+     * Constructor.
+     * @param x x (in image coordinates)
+     * @param y y (in image coordinates)
+     * @param z z (in image coordinates)
+     * @param width width (in image coordinates)
+     * @param height height (in image coordinates)
+     * @param depth depth (in image coordinates)
+     * @param offset offset (in image coordinates)
+     * @param scale scale factor
+     * @param mat Java3D material
+     * @param transparency transparency (range: [0.0, 1.0])
+     */
+    public VisualVoxelSet(float x, float y, float z,
             float width, float height, float depth,
             Vector3f offset, float scale,
             Material mat, float transparency) {
@@ -42,15 +55,39 @@ public class DensityCube {
 
     }
 
+    /**
+     * Returns the cube container.
+     * @return  the cube container
+     */
     public Shape3D getCubeContainer() {
         return this.cubeContainer;
     }
 
-    private void createGeometry(Vector3f offset, float scale, float x, float y, float z) {
+    /**
+     * Creates the geometry.
+     * @param offset offset (in image coordinates)
+     * @param scale scale factor
+     * @param x x (in image coordinates)
+     * @param y y (in image coordinates)
+     * @param z z (in image coordinates)
+     */
+    private void createGeometry(
+            Vector3f offset, float scale, float x, float y, float z) {
         createGeometry(cubeContainer, offset, scale, x, y, z);
     }
 
-    private void createGeometry(Shape3D container, Vector3f offset, float scale, float x, float y, float z) {
+    /**
+     * Creates the geometry.
+     * @param container <code>Shape3D</code> container
+     * @param offset offset (in image coordinates)
+     * @param scale scale factor
+     * @param x x (in image coordinates)
+     * @param y y (in image coordinates)
+     * @param z z (in image coordinates)
+     */
+    private void createGeometry(
+            Shape3D container, Vector3f offset,
+            float scale, float x, float y, float z) {
 
         x -= offset.x;
         y -= offset.y;
@@ -83,6 +120,14 @@ public class DensityCube {
         // face
     }
 
+    /**
+     * Create face from points.
+     * @param p1
+     * @param p2
+     * @param p3
+     * @param p4
+     * @return face as quadarray
+     */
     private QuadArray createQuadArrayFromPoints(Point3f p1, Point3f p2, Point3f p3, Point3f p4) {
         QuadArray qa = new QuadArray(4, QuadArray.COORDINATES | QuadArray.NORMALS);
         qa.setCoordinate(0, p1);
