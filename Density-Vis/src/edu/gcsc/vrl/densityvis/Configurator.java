@@ -74,8 +74,6 @@ public class Configurator extends VPluginConfigurator {
             // vapi.addTypeRepresentation(MyType.class);
 
             vapi.addTypeRepresentation(VCanvas3DType.class);
-            vapi.addComponent(DensityUtil.class);
-            vapi.addComponent(Cube.class);
         }
     }
 
