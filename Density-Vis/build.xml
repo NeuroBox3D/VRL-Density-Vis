@@ -75,6 +75,25 @@
     
     <target name="-post-jar">
         
+         <unjar dest="dist/tmp">
+            <fileset dir="dist">
+                <include name="**/*.jar"/>
+                <exclude name="**/VRL.jar"/>
+                <exclude name="**/VRL-*.jar"/>
+            </fileset>
+            <patternset>
+                <exclude name="META-INF/**"/>
+                <exclude name="/*"/>
+            </patternset>
+        </unjar>
+        <jar destfile="${dist.jar}">
+            <fileset dir="dist/tmp"/>
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+        
+        
         <!--Copy final jar to studio plugin folder-->   
         <property file="build.properties"/>
         <echo message="Copying ${dist.jar} to ${vrl.dir}/plugin-updates"/>
