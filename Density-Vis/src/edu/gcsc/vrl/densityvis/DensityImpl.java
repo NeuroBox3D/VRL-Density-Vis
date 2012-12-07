@@ -96,6 +96,7 @@ class DensityImpl implements Density {
                     }
 
                     value /= numVoxel;
+                    value /= 255.0; // scale to [0,1], image has 8-bit (min=0,max=255)
 
                     voxels.add(new VoxelImpl(
                             x, y, z, width, height, depth, value));
@@ -104,21 +105,21 @@ class DensityImpl implements Density {
             } // for y
         } // for z
 
-        // scale density to fit in [0.0, 1.0]
+// relative scaling (currently disabled)
         
-        double min = Double.MAX_VALUE;
-        double max = Double.MIN_VALUE;
-
-        for (VoxelSet voxel : voxels) {
-            min = Math.min(min, voxel.getValue());
-            max = Math.max(max, voxel.getValue());
-        }
-
-        double scale = max - min;
-
-        for (WritableVoxel voxel : voxels) {
-            voxel.setValue(voxel.getValue() / scale);
-        }
+//        double min = Double.MAX_VALUE;
+//        double max = Double.MIN_VALUE;
+//
+//        for (Voxel voxel : voxels) {
+//            min = Math.min(min, voxel.getValue());
+//            max = Math.max(max, voxel.getValue());
+//        }
+//
+//        double scale = 255;//max - min;
+//
+//        for (WritableVoxel voxel : voxels) {
+//            voxel.setValue(voxel.getValue() / scale);
+//        }
 
     }
 
