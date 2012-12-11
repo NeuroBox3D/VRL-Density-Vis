@@ -4,6 +4,7 @@
  */
 package edu.gcsc.vrl.densityvis;
 
+import eu.mihosoft.vrl.io.IOUtil;
 import eu.mihosoft.vrl.io.VJarUtil;
 import eu.mihosoft.vrl.io.VersionInfo;
 import eu.mihosoft.vrl.lang.visual.CompletionUtil;
@@ -11,14 +12,25 @@ import eu.mihosoft.vrl.system.InitPluginAPI;
 import eu.mihosoft.vrl.system.PluginAPI;
 import eu.mihosoft.vrl.system.PluginDependency;
 import eu.mihosoft.vrl.system.PluginIdentifier;
+import eu.mihosoft.vrl.system.ProjectTemplate;
 import eu.mihosoft.vrl.system.VPluginAPI;
 import eu.mihosoft.vrl.system.VPluginConfigurator;
+import eu.mihosoft.vrl.system.VRLPlugin;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
 public class Configurator extends VPluginConfigurator {
+    
+    private File templateProjectSrc;
 
     public Configurator() {
         //specify the plugin name and version
@@ -40,7 +52,7 @@ public class Configurator extends VPluginConfigurator {
 //                "www.you.com", "License Name", "License Text...");
 
         // specify dependencies
-        addDependency(new PluginDependency("VRL", "0.4.2", VersionInfo.UNDEFINED));
+        addDependency(new PluginDependency("VRL", "0.4.2.7", VersionInfo.UNDEFINED));
 
         addDependency(new PluginDependency(
                 "VRL-JFreeChart", "0.2.4", VersionInfo.UNDEFINED));
@@ -87,5 +99,58 @@ public class Configurator extends VPluginConfigurator {
 
         CompletionUtil.registerClassesFromJar(
                 VJarUtil.getClassLocation(Configurator.class));
+        
+        initTemplateProject(iApi);
+    }
+    
+    @Override
+    public void install(InitPluginAPI iApi) {
+        // ensure template projects are updated
+        new File(iApi.getResourceFolder(), "template-01.vrlp").delete();
+    }
+
+    private void saveProjectTemplate() {
+        InputStream in = VRLPlugin.class.getResourceAsStream(
+                "/edu/gcsc/vrl/densityvis/resources/projects/template-01.vrlp");
+        try {
+            IOUtil.saveStreamToFile(in, templateProjectSrc);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(VRLPlugin.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(VRLPlugin.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void initTemplateProject(InitPluginAPI iApi) {
+        templateProjectSrc = new File(iApi.getResourceFolder(), "template-01.vrlp");
+
+        if (!templateProjectSrc.exists()) {
+            saveProjectTemplate();
+        }
+
+        iApi.addProjectTemplate(new ProjectTemplate() {
+
+            @Override
+            public String getName() {
+                return "Density-Vis - Template 1";
+            }
+
+            @Override
+            public File getSource() {
+                return templateProjectSrc;
+            }
+
+            @Override
+            public String getDescription() {
+                return "Density-Vis Template Project 1";
+            }
+
+            @Override
+            public BufferedImage getIcon() {
+                return null;
+            }
+        });
     }
 }
