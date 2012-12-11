@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="../../VRL/help/resources/css/vrl-documentation.css"/>
+	<title>Density-Visualization Plugin</title>
+	<meta name="author" content="Michael Hoffer"/>
+</head>
+<body>
+<h1 id="density-visualizationplugin">Density-Visualization Plugin</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The density visualization plugin is designed to analyze and visualize density distribution of proteins in neurons.</p>
+
+<figure>
+<img src="resources/img/overview-01.png" alt="Screenshot" id="screenshot" style="width:600px;" />
+<figcaption>Screenshot</figcaption></figure>
+
+
+
+<p>The following section gives an overview over all provided components and their parameters.</p>
+
+<h2 id="components">Components</h2>
+
+<p>This plugin contains several components that can be combined into a complete workflow that computes and visualizes the density distribution and distances between voxel sets and the specified geometry.</p>
+
+<h3 id="computedensity">Compute Density</h3>
+
+<p>This component divides the specified image stack into voxel sets and computes the average density in each set. Input and output parameters are shown in <a href="resources/img/compute-density-01.png">Compute Density</a>.</p>
+
+<figure>
+<img src="resources/img/compute-density-01.png" alt="Compute Density" id="computedensity" style="width:600px;" />
+<figcaption>Compute Density</figcaption></figure>
+
+
+
+<h3 id="computedistances">Compute Distances</h3>
+
+<p>This component computes the minimum distances between the center of each voxel set and the specified geometry. Input and output parameters are shown in <a href="resources/img/compute-distances-01.png">Compute Distances</a>.</p>
+
+<figure>
+<img src="resources/img/compute-distances-01.png" alt="Compute Distances" id="computedistances" style="width:600px;" />
+<figcaption>Compute Distances</figcaption></figure>
+
+
+
+<h3 id="densityvisualization">Density Visualization</h3>
+
+<p>This component visualizes the specified density information and the geometry. Input and output parameters are shown in <a href="resources/img/density-visualization-01.png">Density Visualization</a>.</p>
+
+<figure>
+<img src="resources/img/density-visualization-01.png" alt="Density Visualization" id="densityvisualization" style="width:600px;" />
+<figcaption>Density Visualization</figcaption></figure>
+
+
+
+<p>Visualizations can be saved as pixel image via <code>Right-Click-&gt;Save Image</code>. This is useful if the visualization shall be used in publications.</p>
+
+<h3 id="histogramplotter">Histogram Plotter</h3>
+
+<p>This component creates a histogram plot of the specified distance data. Input and output parameters are shown in <a href="resources/img/distance-histogram-01.png">Histogram Plotter</a>.</p>
+
+<figure>
+<img src="resources/img/distance-histogram-01.png" alt="Histogram Plotter" id="histogramplotter" style="width:600px;" />
+<figcaption>Histogram Plotter</figcaption></figure>
+
+
+
+<p>The plot can be saved as vector image via <code>Right-Click-&gt;Export</code>. This is useful if the plot shall be used in publications.</p>
+
+<h2 id="furtherreading">Further Reading</h2>
+
+<p>-</p>
+</body>
+</html>
