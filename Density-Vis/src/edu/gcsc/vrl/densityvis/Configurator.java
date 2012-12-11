@@ -110,7 +110,7 @@ public class Configurator extends VPluginConfigurator {
     }
 
     private void saveProjectTemplate() {
-        InputStream in = VRLPlugin.class.getResourceAsStream(
+        InputStream in = Configurator.class.getResourceAsStream(
                 "/edu/gcsc/vrl/densityvis/resources/projects/template-01.vrlp");
         try {
             IOUtil.saveStreamToFile(in, templateProjectSrc);
