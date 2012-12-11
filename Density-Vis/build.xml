@@ -72,6 +72,13 @@
 
     -->
     
+    <target name="-pre-jar">
+        
+        <zip destfile="dist/tmp/eu/mihosoft/vrl/plugin/content/help.zip">
+            <fileset dir="help"/>
+        </zip>
+        
+    </target>
     
     <target name="-post-jar">
         
