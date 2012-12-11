@@ -5,24 +5,34 @@
 package edu.gcsc.vrl.densityvis;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
+ * Internal density implementation. This class must not be exported through
+ * public API.
  *
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
 class DensityImpl implements Density {
 
-    private Cube cube;
+    private ImageVoxels cube;
     private int voxelWidth;
     private int voxelHeight;
     private int voxelDepth;
     private ArrayList<WritableVoxel> voxels = new ArrayList<WritableVoxel>();
 
-    public DensityImpl(Cube cube,
+    /**
+     * Constructor. <b>Note:</b> computes the average density for each voxel
+     * subset.
+     *
+     * @param imageVoxels image voxels (usually from .tif-stack)
+     * @param voxelSetWidth width of the voxel set (in image coordinates)
+     * @param voxelSetHeight height of the voxel set (in image coordinates)
+     * @param voxelSetDepth depth of the voxel set (in image coordinates)
+     */
+    public DensityImpl(ImageVoxels imageVoxels,
             int voxelWidth, int voxelHeight, int voxelDepth) {
-        this.cube = cube;
+        this.cube = imageVoxels;
         this.voxelWidth = voxelWidth;
         this.voxelHeight = voxelHeight;
         this.voxelDepth = voxelDepth;
@@ -30,6 +40,9 @@ class DensityImpl implements Density {
         compute();
     }
 
+    /**
+     * Computes the average density for each voxel subset.
+     */
     private void compute() {
 
         if (voxelWidth > cube.getWidth()) {
@@ -85,7 +98,8 @@ class DensityImpl implements Density {
                     value /= numVoxel;
                     value /= 255.0; // scale to [0,1], image has 8-bit (min=0,max=255)
 
-                    voxels.add(new VoxelImpl(x, y, z, width, height, depth, value));
+                    voxels.add(new VoxelImpl(
+                            x, y, z, width, height, depth, value));
 
                 } // for x
             } // for y
@@ -110,7 +124,7 @@ class DensityImpl implements Density {
     }
 
     @Override
-    public List<? extends Voxel> getVoxels() {
+    public List<? extends VoxelSet> getVoxels() {
         return voxels;
     }
 }

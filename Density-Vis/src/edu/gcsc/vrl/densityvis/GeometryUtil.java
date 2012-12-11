@@ -8,11 +8,17 @@ import eu.mihosoft.vrl.v3d.VTriangleArray;
 import javax.vecmath.Point3f;
 
 /**
- *
+ * Geometry util class that allows to perform tasks such as
+ * convert triangle arrays to point arrays.
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
 public class GeometryUtil {
 
+    /**
+     * Converts a triangle arrays to a point array.
+     * @param array array to convert
+     * @return triangle array as point array
+     */
     public static Point3f[] vTriangleArray2PointArray(VTriangleArray array) {
         Point3f[] result = new Point3f[array.size() * 3];
         

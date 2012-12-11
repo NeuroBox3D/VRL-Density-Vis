@@ -43,12 +43,8 @@ package edu.gcsc.vrl.densityvis;
 
 import eu.mihosoft.vrl.annotation.TypeInfo;
 import eu.mihosoft.vrl.reflection.CustomParamData;
-import eu.mihosoft.vrl.reflection.RepresentationType;
 import eu.mihosoft.vrl.reflection.TypeRepresentationBase;
-import eu.mihosoft.vrl.types.UniverseCreator;
 import eu.mihosoft.vrl.types.VCanvas3D;
-import eu.mihosoft.vrl.types.VOffscreenCanvas3D;
-import eu.mihosoft.vrl.types.VUniverseCreator;
 import eu.mihosoft.vrl.visual.VBoxLayout;
 import eu.mihosoft.vrl.visual.VContainer;
 import eu.mihosoft.vrl.visual.VGraphicsUtil;

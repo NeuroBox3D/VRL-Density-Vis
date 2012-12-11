@@ -5,43 +5,44 @@
 package edu.gcsc.vrl.densityvis;
 
 /**
- *
+ * This interface defines write access for voxel sets.
+ * @see VoxelSet
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
-public interface WritableVoxel extends Voxel{
+interface WritableVoxel extends VoxelSet{
 
     /**
-     * @param depth the depth to set
+     * @param depth the depth to set (in image coordinates)
      */
     void setDepth(int depth);
 
     /**
-     * @param height the height to set
+     * @param height the height to set (in image coordinates)
      */
     void setHeight(int height);
 
     /**
-     * @param value the value to set
+     * @param value the value to set (in image coordinates)
      */
     void setValue(double value);
 
     /**
-     * @param width the width to set
+     * @param width the width to set (in image coordinates)
      */
     void setWidth(int width);
 
     /**
-     * @param x the x to set
+     * @param x the x to set (in image coordinates)
      */
     void setX(int x);
 
     /**
-     * @param y the y to set
+     * @param y the y to set (in image coordinates)
      */
     void setY(int y);
 
     /**
-     * @param z the z to set
+     * @param z the z to set (in image coordinates)
      */
     void setZ(int z);
     

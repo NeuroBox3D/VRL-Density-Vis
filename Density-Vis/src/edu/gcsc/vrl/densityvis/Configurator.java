@@ -40,8 +40,8 @@ public class Configurator extends VPluginConfigurator {
 //                "www.you.com", "License Name", "License Text...");
 
         // specify dependencies
-        // addDependency(new PluginDependency("VRL", "0.4.0", "0.4.0"));
-        
+        addDependency(new PluginDependency("VRL", "0.4.2", VersionInfo.UNDEFINED));
+
         addDependency(new PluginDependency(
                 "VRL-JFreeChart", "0.2.4", VersionInfo.UNDEFINED));
 
@@ -84,9 +84,8 @@ public class Configurator extends VPluginConfigurator {
 
     @Override
     public void init(InitPluginAPI iApi) {
-        // nothing to init
 
-//        CompletionUtil.registerClassesFromJar(
-//                VJarUtil.getClassLocation(Configurator.class));
+        CompletionUtil.registerClassesFromJar(
+                VJarUtil.getClassLocation(Configurator.class));
     }
 }

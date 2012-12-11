@@ -24,11 +24,27 @@ import org.jfree.data.statistics.HistogramDataset;
 import org.jfree.data.statistics.HistogramType;
 
 /**
+ * Utility class that allows density/distance visualization in 2D and 3D.
  *
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
 public class VisUtil {
 
+    /**
+     * Returns a list of
+     * <code>Shape3D</code> objects that visualize the specified density
+     * information.
+     *
+     * @param density density information that shall be visualized
+     * @param geometry geometry (e.g., cell body)
+     * @param percentage defines the minimum density threashold (in %)
+     * @param colorZero color that represents <code>density = 0.0</code>
+     * @param colorOne color that represents <code>density = 1.0</code>
+     * @param transparency defines whether to visualize density via transparency
+     * (in addition to color)
+     * @return a list of <code>Shape3D</code> objects that visualize the
+     * specified density information
+     */
     public static Shape3DArray density2Java3D(
             Density density, VTriangleArray geometry,
             float percentage,
@@ -39,35 +55,33 @@ public class VisUtil {
         float scale = geometry.getScaleFactor();
         Vector3f offset = geometry.getOffset();
 
-        for (Voxel v : density.getVoxels()) {
+        for (VoxelSet v : density.getVoxels()) {
 
+            // only visualize density above threashold
             if (v.getValue() < percentage / 100.f) {
                 continue;
             }
 
+            // color interpolation
             LinearInterpolation redInt = new LinearInterpolation(
                     colorZero.getRed() / 255.f, colorOne.getRed() / 255.f);
-
             LinearInterpolation greenInt = new LinearInterpolation(
                     colorZero.getGreen() / 255.f, colorOne.getGreen() / 255.f);
-
             LinearInterpolation blueInt = new LinearInterpolation(
                     colorZero.getBlue() / 255.f, colorOne.getBlue() / 255.f);
-
             LinearInterpolation alphaInt = new LinearInterpolation(
                     colorZero.getAlpha() / 255.f, colorOne.getAlpha() / 255.f);
-
             redInt.step(v.getValue());
             greenInt.step(v.getValue());
             blueInt.step(v.getValue());
             alphaInt.step(v.getValue());
-
             Color interpolatedColor = new Color(
                     (float) redInt.getValue(),
                     (float) greenInt.getValue(),
                     (float) blueInt.getValue(),
                     (float) alphaInt.getValue());
 
+            // create a material for the density cube
             Material mat = new Material();
             mat.setCapability(Material.ALLOW_COMPONENT_WRITE);
             mat.setEmissiveColor(color2Color3f(interpolatedColor));
@@ -82,7 +96,8 @@ public class VisUtil {
                 transparencyValue = 0.f;
             }
 
-            DensityCube cubeCreator = new DensityCube(
+            // create the geometry that visualizes a voxel set
+            VisualVoxelSet cubeCreator = new VisualVoxelSet(
                     v.getX(), v.getY(), v.getZ(),
                     v.getWidth(), v.getHeight(), v.getDepth(),
                     offset, scale,
@@ -96,20 +111,33 @@ public class VisUtil {
         return result;
     }
 
+    /**
+     * Converts color from AWT to Java3D.
+     *
+     * @param c color to convert
+     * @return color as Java3D color
+     */
     private static Color3f color2Color3f(Color c) {
         return new Color3f(c.getRed() / 255f,
                 c.getGreen() / 255f,
                 c.getBlue() / 255f);
     }
 
-    public static void density2ImageStack(File out, Cube cube, Density density) {
+    /**
+     * Renders the specified density information as image stack (.tif).
+     *
+     * @param out the output file (TIF)
+     * @param voxels the image voxels of the source image
+     * @param density density information that shall be visualized
+     */
+    public static void density2ImageStack(File out, ImageVoxels voxels, Density density) {
 
         ImagePlus ip = NewImage.createByteImage("Density Stack",
-                cube.getWidth(), cube.getHeight(), cube.getDepth(), NewImage.FILL_BLACK);
+                voxels.getWidth(), voxels.getHeight(), voxels.getDepth(), NewImage.FILL_BLACK);
 
         ImageStack is = ip.getStack();
 
-        for (Voxel v : density.getVoxels()) {
+        for (VoxelSet v : density.getVoxels()) {
 
             int value = (int) (256 * v.getValue());
 
@@ -128,20 +156,27 @@ public class VisUtil {
         saver.saveAsTiffStack(out.getAbsolutePath());
     }
 
-    public static HistogramData distance2Histogram(Collection<Distance> distances,int numBinds) {
+    /**
+     * Visualizes the dinstances between voxel sets and the membrane as histogram.
+     *
+     * @param distances dinstances to visualize
+     * @param numBinds number of bins
+     * @return histogramdata that can be visualized via
+     * <code>HistogramPlotter</code> or directly via <code>JFreeChart</code>
+     */
+    public static HistogramData distance2Histogram(Collection<Distance> distances, int numBinds) {
         HistogramData data = new HistogramData();
         double[] values = new double[distances.size()];
 
         HistogramDataset dataset = new HistogramDataset();
         dataset.setType(HistogramType.FREQUENCY);
-        
-        
+
         int i = 0;
         for (Distance d : distances) {
             values[i] = d.getDistance();
             i++;
         }
-        
+
         dataset.addSeries("Histogram", values, numBinds);
 
         data.setPlotTitle("Distances");
@@ -150,7 +185,6 @@ public class VisUtil {
         data.setPlotOrientation(PlotOrientation.VERTICAL);
 
         data.setData(dataset);
-
 
         return data;
     }

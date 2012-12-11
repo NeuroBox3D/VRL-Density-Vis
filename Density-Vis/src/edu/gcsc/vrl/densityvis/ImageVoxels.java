@@ -12,10 +12,13 @@ import ij.process.StackConverter;
 import java.io.File;
 
 /**
- *
+ * Image voxels contains the complete voxel data of an image stack (.tif). 
+ * After loading an image stack it ensures that the voxel data is converted
+ * to 8-bit gray scale.
+ * 
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
-public class Cube {
+public class ImageVoxels {
 
     private int[][][] data;
     private int width;
@@ -24,7 +27,16 @@ public class Cube {
     
     private ImageStack stack;
 
-    public Cube(ImageStack stack, int[][][] data, int width, int height, int depth) {
+    /**
+     * Constructor.
+     * @param stack image stack
+     * @param data voxel data
+     * @param width width (in image coordinates)
+     * @param height height (in image coordinates)
+     * @param depth depth (in image coordinates)
+     */
+    private ImageVoxels(
+            ImageStack stack, int[][][] data, int width, int height, int depth) {
         this.stack = stack;
         this.data = data;
         this.width = width;
@@ -32,7 +44,12 @@ public class Cube {
         this.depth = depth;
     }
 
-    public static Cube load(File image) {
+    /**
+     * Loads an image stack from file.
+     * @param image image file
+     * @return an <code>ImageVoxels</code> object from file
+     */
+    public static ImageVoxels load(File image) {
 
         ImagePlus imp = ij.IJ.openImage(image.getAbsolutePath());
         int numSlices = imp.getStackSize();
@@ -67,33 +84,44 @@ public class Cube {
             System.out.println(" --> slice:" + i + " = w: " + width + ", h: " + height);
         }
 
-        return new Cube(stack, stackData, width, height, numSlices);
+        return new ImageVoxels(stack, stackData, width, height, numSlices);
     }
 
+    /**
+     * Returns the voxel data.
+     * @return voxel data
+     */
     public int[][][] getData() {
         return data;
     }
     
+    /**
+     * Returns the value of the specified voxel.
+     * @param x x (in image coordinates)
+     * @param y y (in image coordinates)
+     * @param z z (in image coordinates)
+     * @return value of the specified voxel
+     */
     public double getVoxel(int x, int y, int z) {
         return stack.getVoxel(x, y, z);
     }
 
     /**
-     * @return the width
+     * @return the width (in image coordinates)
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * @return the height
+     * @return the height (in image coordinates)
      */
     public int getHeight() {
         return height;
     }
 
     /**
-     * @return the depth
+     * @return the depth (in image coordinates)
      */
     public int getDepth() {
         return depth;
