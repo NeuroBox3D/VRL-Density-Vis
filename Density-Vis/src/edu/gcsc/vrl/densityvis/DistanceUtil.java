@@ -176,4 +176,5 @@ class DistanceThread extends Thread {
     public Collection<Distance> getDistances() {
         return distances;
     }
+    
 }

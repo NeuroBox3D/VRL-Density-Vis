@@ -183,7 +183,7 @@ public class VisUtil {
         data.setxAxisLabel("Distance to Membrane");
         data.setyAxisLabel("Frequency");
         data.setPlotOrientation(PlotOrientation.VERTICAL);
-
+        
         data.setData(dataset);
 
         return data;
