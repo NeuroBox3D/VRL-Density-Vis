@@ -47,7 +47,7 @@ public class VisUtil {
      */
     public static Shape3DArray density2Java3D(
             Density density, VTriangleArray geometry,
-            float percentage,
+            double percentage,
             Color colorZero, Color colorOne,
             boolean transparency) {
         Shape3DArray result = new Shape3DArray();

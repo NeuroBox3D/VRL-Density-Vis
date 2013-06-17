@@ -108,7 +108,7 @@ class DistanceThread extends Thread {
     private Collection<Distance> distances = new ArrayList<Distance>();
     private int startIndex;
     private int stopIndex;
-    private int percentage;
+    private double percentage;
     private List<? extends VoxelSet> voxels;
     private Point3f[] points;
 
@@ -122,7 +122,7 @@ class DistanceThread extends Thread {
      * @param percentage minimum density threashold (in %)
      */
     public DistanceThread(int startIndex, int stopIndex,
-            List<? extends VoxelSet> voxels, Point3f[] points, int percentage) {
+            List<? extends VoxelSet> voxels, Point3f[] points, double percentage) {
         this.startIndex = startIndex;
         this.stopIndex = stopIndex;
         this.voxels = voxels;
