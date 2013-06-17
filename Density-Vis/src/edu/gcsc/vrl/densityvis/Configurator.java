@@ -34,7 +34,7 @@ public class Configurator extends VPluginConfigurator {
 
     public Configurator() {
         //specify the plugin name and version
-        setIdentifier(new PluginIdentifier("Density-Vis-Plugin", "0.1"));
+        setIdentifier(new PluginIdentifier("Density-Vis-Plugin", "0.2"));
 
         // optionally allow other plugins to use the api of this plugin
         // you can specify packages that shall be
