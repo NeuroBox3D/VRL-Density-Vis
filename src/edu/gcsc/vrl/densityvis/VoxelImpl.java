@@ -10,7 +10,7 @@ package edu.gcsc.vrl.densityvis;
  *
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
-class VoxelImpl implements WritableVoxel {
+public class VoxelImpl implements WritableVoxel {
 
     private int x;
     private int y;

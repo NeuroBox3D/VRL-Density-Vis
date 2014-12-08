@@ -9,7 +9,7 @@ package edu.gcsc.vrl.densityvis;
  * @see VoxelSet
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
-interface WritableVoxel extends VoxelSet{
+public interface WritableVoxel extends VoxelSet{
 
     /**
      * @param depth the depth to set (in image coordinates)
