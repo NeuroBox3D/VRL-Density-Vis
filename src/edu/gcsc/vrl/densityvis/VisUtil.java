@@ -111,7 +111,7 @@ public class VisUtil {
 
 		for (VoxelSet v : density.getVoxels()) {
 
-			// only visualize density above threashold
+			// only visualize density above threshold
 			if (v.getValue() < percentage / 100.f) {
 				continue;
 			}
