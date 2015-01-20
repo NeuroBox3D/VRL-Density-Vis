@@ -13,6 +13,7 @@ import ij.io.FileSaver;
 import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import javax.media.j3d.Material;
@@ -170,14 +171,17 @@ public class VisUtil {
 					y.add(coords[1]);
 					z.add(coords[2]);
 				}
-				float safety_factor = 0.01f; // in percentage
-				float dim_x = (1 / Math.abs(Collections.max(x) - Collections.min(x))) * safety_factor;
-				float dim_y = (1 / Math.abs(Collections.max(y) - Collections.min(y))) * safety_factor;
-				float dim_z = (1 / Math.abs(Collections.max(z) - Collections.min(z))) * safety_factor;
+
+				/// rescaling factor for voxels
+  				float RF = 1.0f / (Collections.max(Arrays.asList(
+						Math.abs(Collections.max(x) - Collections.min(x)),
+						Math.abs(Collections.max(y) - Collections.min(y)),
+						Math.abs(Collections.max(z) - Collections.min(z))
+					    )));
 
 				VisualVoxelSet cubeCreator = new VisualVoxelSet(
-					v.getX() * dim_x,  v.getY() * dim_y, v.getZ() * dim_z,
-					v.getWidth() * dim_x, v.getHeight() * dim_y, v.getDepth() * dim_z,
+					v.getX() * RF,  v.getY() * RF, v.getZ() * RF,
+					v.getWidth() * RF, v.getHeight() * RF, v.getDepth() * RF,
 					offset, scale,
 					mat, transparencyValue);
 				Shape3D s = cubeCreator.getCubeContainer();
