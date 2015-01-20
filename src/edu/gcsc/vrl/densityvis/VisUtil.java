@@ -1,9 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+/// package's name
 package edu.gcsc.vrl.densityvis;
 
+/// imports
 import edu.gcsc.vrl.jfreechart.HistogramData;
 import eu.mihosoft.vrl.animation.LinearInterpolation;
 import eu.mihosoft.vrl.v3d.Shape3DArray;
@@ -14,9 +12,12 @@ import ij.gui.NewImage;
 import ij.io.FileSaver;
 import java.awt.Color;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import javax.media.j3d.Material;
 import javax.media.j3d.Shape3D;
+import javax.media.j3d.TriangleArray;
 import javax.vecmath.Color3f;
 import javax.vecmath.Vector3f;
 import org.jfree.chart.plot.PlotOrientation;
@@ -158,7 +159,29 @@ public class VisUtil {
 				Shape3D s = cubeCreator.getCubeContainer();
 				result.add(s);
 			} else {
-				/// TODO rescale automatically
+				TriangleArray vta = geometry.getTriangleArray();
+				float[] coords = {0, 0, 0};
+				ArrayList<Float> x = new ArrayList<Float>();
+				ArrayList<Float> y = new ArrayList<Float>();
+				ArrayList<Float> z = new ArrayList<Float>();
+				for (int i = 0; i < vta.getVertexCount(); i++) {
+					vta.getCoordinates(i, coords);
+					x.add(coords[0]);
+					y.add(coords[1]);
+					z.add(coords[2]);
+				}
+				float safety_factor = 0.01f; // in percentage
+				float dim_x = (1 / Math.abs(Collections.max(x) - Collections.min(x))) * safety_factor;
+				float dim_y = (1 / Math.abs(Collections.max(y) - Collections.min(y))) * safety_factor;
+				float dim_z = (1 / Math.abs(Collections.max(z) - Collections.min(z))) * safety_factor;
+
+				VisualVoxelSet cubeCreator = new VisualVoxelSet(
+					v.getX() * dim_x,  v.getY() * dim_y, v.getZ() * dim_z,
+					v.getWidth() * dim_x, v.getHeight() * dim_y, v.getDepth() * dim_z,
+					offset, scale,
+					mat, transparencyValue);
+				Shape3D s = cubeCreator.getCubeContainer();
+				result.add(s);
 			}
 		}
 		return result;
