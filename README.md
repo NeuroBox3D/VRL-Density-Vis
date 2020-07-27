@@ -7,7 +7,7 @@ The density visualization plugin is designed to analyze and visualize density di
 
 ![Screenshot][]
 
-[Screenshot]: help/resources/img/overview-01.png width=600px
+[Screenshot]: https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/overview-01.png width=600px
 
 The following section gives an overview over all provided components and their parameters.
 
@@ -21,7 +21,7 @@ This component divides the specified image stack into voxel sets and computes th
 
 ![Compute Density][]
 
-[Compute Density]: help/resources/img/compute-density-01.png width=600px
+[Compute Density]: https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/compute-density-01.png width=600px
 
 ### Compute Distances ###
 
@@ -29,7 +29,7 @@ This component computes the minimum distances between the center of each voxel s
 
 ![Compute Distances][]
 
-[Compute Distances]: help/resources/img/compute-distances-01.png width=600px
+[Compute Distances]: https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/compute-distances-01.png width=600px
 
 
 ### Density Visualization ###
@@ -38,7 +38,7 @@ This component visualizes the specified density information and the geometry. In
 
 ![Density Visualization][]
 
-[Density Visualization]: help/resources/img/density-visualization-01.png width=600px
+[Density Visualization]: https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/density-visualization-01.png width=600px
 
 Visualizations can be saved as pixel image via `Right-Click->Save Image`. This is useful if the visualization shall be used in publications.
 
@@ -50,7 +50,7 @@ This component creates a histogram plot of the specified distance data. Input an
 
 **INFO: currently disabled**
 
-[Histogram Plotter]: help/resources/img/distance-histogram-01.png width=600px
+[Histogram Plotter]: https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/distance-histogram-01.png width=600px
 
 The plot can be saved as vector image via `Right-Click->Export`. This is useful if the plot shall be used in publications.
 
@@ -91,12 +91,12 @@ task to build and install the plugin.
 
 ##### Bash (Linux/OS X/Cygwin/other Unix-like OS)
 
-    cd Path/To/VRL-Density-Vis/VRL-Density-Vis
-    ./gradlew installVRLPlugin
+    cd Path/To/VRL-Density-Vis
+    bash ./gradlew installVRLPlugin
     
 ##### Windows (CMD)
 
-    cd Path\To\VRL-Density-Vis\VRL-Density-Vis
+    cd Path\To\VRL-Density-Vis
     gradlew installVRLPlugin
 
 Finally, restart VRL-Studio
