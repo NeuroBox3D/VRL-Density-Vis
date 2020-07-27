@@ -17,26 +17,20 @@ This plugin contains several components that can be combined into a complete wor
 
 This component divides the specified image stack into voxel sets and computes the average density in each set. Input and output parameters are shown in [Compute Density].
 
-![Compute Density][]
-
-[Compute Density]: https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/compute-density-01.png width=600px
+![Compute Density](https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/compute-density-01.png)
 
 ### Compute Distances ###
 
 This component computes the minimum distances between the center of each voxel set and the specified geometry. Input and output parameters are shown in [Compute Distances].
 
-![Compute Distances][]
-
-[Compute Distances]: https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/compute-distances-01.png width=600px
+![Compute Distances](https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/compute-distances-01.png)
 
 
 ### Density Visualization ###
 
 This component visualizes the specified density information and the geometry. Input and output parameters are shown in [Density Visualization].
 
-![Density Visualization][]
-
-[Density Visualization]: https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/density-visualization-01.png width=600px
+![Density Visualization](https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/density-visualization-01.png)
 
 Visualizations can be saved as pixel image via `Right-Click->Save Image`. This is useful if the visualization shall be used in publications.
 
@@ -44,11 +38,11 @@ Visualizations can be saved as pixel image via `Right-Click->Save Image`. This i
 
 This component creates a histogram plot of the specified distance data. Input and output parameters are shown in [Histogram Plotter].
 
-![Histogram Plotter][]
+
 
 **INFO: currently disabled**
 
-[Histogram Plotter]: https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/distance-histogram-01.png width=600px
+![Histogram Plotter](https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/distance-histogram-01.png)
 
 The plot can be saved as vector image via `Right-Click->Export`. This is useful if the plot shall be used in publications.
 
