@@ -6,7 +6,7 @@ Author:	Michael Hoffer
 
 ## Introduction ##
 
-The density visualization plugin is designed to analyze and visualize density distribution of proteins in neurons.
+The density visualization plugin is designed to analyze and visualize density distribution of proteins in neurons. But it can also be used for other types distributions.
 
 ![Screenshot][]
 
