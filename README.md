@@ -1,6 +1,9 @@
 VRL-Density-Vis
 ===============
 
+[ ![Download](https://api.bintray.com/packages/miho/VRL/VRL-Density-Vis/images/download.svg) ](https://bintray.com/miho/VRL/VRL-Density-Vis/_latestVersion)
+
+
 ## Introduction ##
 
 The density visualization plugin is designed to analyze and visualize density distribution of proteins in neurons. But it can also be used for other types distributions.
