@@ -5,9 +5,7 @@ VRL-Density-Vis
 
 The density visualization plugin is designed to analyze and visualize density distribution of proteins in neurons. But it can also be used for other types distributions.
 
-![Screenshot][]
-
-[Screenshot]: https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/overview-01.png width=600px
+![Screenshot](https://github.com/NeuroBox3D/VRL-Density-Vis/blob/master/help/resources/img/overview-01.png)
 
 The following section gives an overview over all provided components and their parameters.
 
